@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-    const serverPrefix = 'http://my-json-server.typicode.com/';
+    const serverPrefix = 'https://my-json-server.typicode.com/';
     
 const getHeaders = () => ({
     'Content-Type': 'application/json',
