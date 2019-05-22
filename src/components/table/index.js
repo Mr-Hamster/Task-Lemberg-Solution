@@ -7,6 +7,7 @@ export default class TableN extends React.Component{
         search:'',
         dataS:[],
         staticData: [],
+        
     }
 
     async componentDidMount(){
@@ -23,6 +24,7 @@ export default class TableN extends React.Component{
             const str = value.toLowerCase();
             const dataFiltered = staticData.filter(item => item.name.toLowerCase().includes(str))
             this.setState({dataS: dataFiltered})  
+            
         }
     }
 
@@ -48,18 +50,26 @@ export default class TableN extends React.Component{
                         <th>Quantity</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    {
-                        this.state.dataS.map((item, index) => (
-                            <tr key={index}>
-                                <th>{item.id}</th>
-                                <th>{item.name}</th>
-                                <th>{item.price}</th>
-                                <th>{item.quantity}</th>
+                    { (this.state.dataS == '') ? (
+                        <tbody>
+                            <tr>
+                                <th colSpan="4" style={{textAlign : 'center'}}>No results</th>
                             </tr>
-                        ))
+                        </tbody>
+                    ) : (
+                        <tbody>
+                        {
+                            this.state.dataS.map((item, index) => (
+                                <tr key={index}>
+                                    <th>{item.id}</th>
+                                    <th>{item.name}</th>
+                                    <th>{item.price}</th>
+                                    <th>{item.quantity}</th>
+                                </tr>
+                            ))
+                        }
+                        </tbody>) 
                     }
-                    </tbody>
                 </Table>
             </Fragment>
         );
